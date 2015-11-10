@@ -181,10 +181,10 @@ public class ZooKeeperGroup<T extends NodeState> implements Group<T> {
             try {
                 if (isConnected()) {
                     doUpdate(null);
-                    callListeners(GroupListener.GroupEvent.DISCONNECTED);
                 }
-            } catch (Exception e) {
-                handleException(e);
+            } catch (Exception ignore) {
+            } finally {
+                callListeners(GroupListener.GroupEvent.DISCONNECTED);
             }
             listeners.clear();
         }
